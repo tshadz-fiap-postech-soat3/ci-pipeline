@@ -4,14 +4,11 @@
 name: ci-pipeline
 
 on:
-  workflow_call:
-    inputs:
-        config-path:
-          required: true
-          type: string
-    secrets:
-        token:
-          required: true
+  workflow_run:
+    workflows: ["pipeline-ci"]
+    branches: [ $default-branch ]
+    types: 
+      - completed
 
 jobs:
   build:
