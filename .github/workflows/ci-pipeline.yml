@@ -9,7 +9,7 @@ name: ci-pipeline
   #   branches: [ $default-branch ]
   #   types: 
   #     - completed
-on: workflow_dispatch
+on: workflow_call
 
 jobs:
   build:
