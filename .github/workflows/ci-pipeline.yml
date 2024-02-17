@@ -3,13 +3,9 @@
 
 name: ci-pipeline
 
-# on:
-  # workflow_run:
-  #   workflows: ["pipeline-ci"]
-  #   branches: [ $default-branch ]
-  #   types: 
-  #     - completed
-on: workflow_call
+on:
+  push:
+    branches: [main]
 
 jobs:
   build:
