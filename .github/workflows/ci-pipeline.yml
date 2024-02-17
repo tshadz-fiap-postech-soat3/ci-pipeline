@@ -28,3 +28,4 @@ jobs:
 
    cd: 
       uses: tshadz-fiap-postech-soat3/cd-pipeline/.github/workflows/cd-pipeline.yml@main
+      secrets: inherit
