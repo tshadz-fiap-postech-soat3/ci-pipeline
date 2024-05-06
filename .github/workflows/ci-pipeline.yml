@@ -17,14 +17,29 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build (if present)
+      run: npm run build --if-present
+    
+    - name: Run tests with coverage
+      run: npm test -- --coverage
+      env:
+        CI: true
+
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage-report
+        path: coverage/lcov.info
 
    validate:
     name: Validate
@@ -36,7 +51,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-  #    - run: npm test
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
