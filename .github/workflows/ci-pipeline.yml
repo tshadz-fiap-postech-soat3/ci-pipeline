@@ -45,6 +45,8 @@ jobs:
     name: Validate
     runs-on: ubuntu-latest
     steps:
+      - name: DIRECTORY
+        run: ls -a
       - uses: actions/checkout@v3
       - name: Download coverage report
         uses: actions/download-artifact@v4
