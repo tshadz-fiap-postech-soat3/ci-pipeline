@@ -36,7 +36,7 @@ jobs:
         CI: true
 
     - name: Upload coverage report
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: coverage-report
         path: coverage/lcov.info
@@ -46,6 +46,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Download coverage report
+        uses: actions/download-artifact@v4
+        with:
+          name: lcov.info
+          path: coverage/lcov.info
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
