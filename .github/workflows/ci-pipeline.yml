@@ -35,34 +35,11 @@ jobs:
       env:
         CI: true
 
-    - name: Upload coverage report
-      uses: actions/upload-artifact@v4
-      with:
-        name: coverage-report
-        path: coverage/lcov.info
-
-   validate:
-    name: Validate
-    runs-on: ubuntu-latest
-    steps:
-      - name: DIRECTORY
-        run: ls -a
-      - uses: actions/checkout@v3
-      - name: Download coverage report
-        uses: actions/download-artifact@v4
-        with:
-          name: lcov.info
-          path: coverage/lcov.info
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   #  cd: 
   #     uses: tshadz-fiap-postech-soat3/cd-pipeline/.github/workflows/cd-pipeline.yml@main
