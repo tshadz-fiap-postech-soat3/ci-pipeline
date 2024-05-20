@@ -40,10 +40,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      continue-on-error: true
+      continue-on-error: false
 
   cd:
     name: Trigger CD Pipeline
     needs: build
-    uses: tshadz-fiap-postech-soat3/cd-pipeline/.github/workflows/cd-pipeline.yml@dev-fiap-001
+    uses: tshadz-fiap-postech-soat3/cd-pipeline/.github/workflows/cd-pipeline.yml@main
     secrets: inherit
