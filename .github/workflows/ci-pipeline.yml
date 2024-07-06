@@ -7,7 +7,7 @@ on: workflow_call
 
 jobs:
   build:
-    name: Continuous Integration
+    name: CI-Pipeline - Continuous Integration
     runs-on: ubuntu-latest
 
     strategy:
@@ -43,7 +43,7 @@ jobs:
       continue-on-error: false
 
   cd:
-    name: Trigger CD Pipeline
+    name: CD Pipeline - Continuouse Delivery
     needs: build
     uses: tshadz-fiap-postech-soat3/cd-pipeline/.github/workflows/cd-pipeline.yml@main
     secrets: inherit
