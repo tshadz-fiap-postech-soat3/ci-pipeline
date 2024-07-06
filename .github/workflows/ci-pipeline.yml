@@ -42,6 +42,12 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       continue-on-error: false
 
+  devsecops:
+    name: Trigger DevSecOps Pipeline
+    needs: build
+    uses: tshadz-fiap-postech-soat3/devsecops-pipeline/.github/workflows/devsecops-pipeline.yml@main
+    secrets: inherit
+
   cd:
     name: Trigger CD Pipeline
     needs: build
