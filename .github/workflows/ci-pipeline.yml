@@ -48,3 +48,8 @@ jobs:
     uses: tshadz-fiap-postech-soat3/devsecops-pipeline/.github/workflows/devsecops-pipeline.yml@main
     secrets: inherit
 
+  cd:
+    name: CD Pipeline - Continuous Delivery
+    needs: build
+    uses: tshadz-fiap-postech-soat3/cd-pipeline/.github/workflows/cd-pipeline.yml@main
+    secrets: inherit
